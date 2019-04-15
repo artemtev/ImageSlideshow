@@ -142,7 +142,13 @@ open class ImageSlideshow: UIView {
     }
 
     /// Current scroll view page. This may differ from `currentPage` as circular slider has two more dummy pages at indexes 0 and n-1 to provide fluent scrolling between first and last item.
-    open fileprivate(set) var scrollViewPage: Int = 0
+    open fileprivate(set) var scrollViewPage: Int = 0 {
+        didSet {
+            if scrollViewPage < 0 {
+                scrollViewPage = 0
+            }
+        }
+    }
 
     /// Input Sources loaded to slideshow
     open fileprivate(set) var images = [InputSource]()
